@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "Şahin Mobilya & Tasarım",
   description:
     "Özel ölçü mutfak, gardırop, TV ünitesi, vestiyer ve dekorasyon çözümleri.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
