@@ -1,6 +1,5 @@
 import {
   ArrowUp,
-  Instagram,
   Mail,
   MapPin,
   MessageCircle,
@@ -75,13 +74,6 @@ export default function Footer() {
             </p>
 
             <div className="mt-7 flex items-center gap-3">
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/70 transition duration-300 hover:border-[#C9A14A] hover:bg-[#C9A14A] hover:text-black"
-              >
-                <Instagram size={19} />
-              </a>
 
               <a
                 href="https://wa.me/905333527951?text=Merhaba%20Şahin%20Mobilya%2C%20bilgi%20almak%20istiyorum."
