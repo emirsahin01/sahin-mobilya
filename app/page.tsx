@@ -2,6 +2,7 @@ import About from "@/app/components/About";
 import Contact from "@/app/components/Contact";
 import Footer from "@/app/components/Footer";
 import Hero from "@/app/components/Hero";
+import LoadingScreen from "@/app/components/LoadingScreen";
 import MapSection from "@/app/components/MapSection";
 import Navbar from "@/app/components/Navbar";
 import Projects from "@/app/components/Projects";
@@ -13,6 +14,8 @@ import WhatsappButton from "@/app/components/WhatsappButton";
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-black">
+      <LoadingScreen />
+
       <Navbar />
 
       <Hero />
