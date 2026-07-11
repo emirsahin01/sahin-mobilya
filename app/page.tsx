@@ -8,6 +8,7 @@ import Navbar from "@/app/components/Navbar";
 import Projects from "@/app/components/Projects";
 import RevealSection from "@/app/components/RevealSection";
 import Services from "@/app/components/Services";
+import Stats from "@/app/components/Stats";
 import Testimonials from "@/app/components/Testimonials";
 import WhatsappButton from "@/app/components/WhatsappButton";
 
@@ -19,6 +20,8 @@ export default function Home() {
       <Navbar />
 
       <Hero />
+
+      <Stats />
 
       <RevealSection>
         <Services />
