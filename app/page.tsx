@@ -1,4 +1,5 @@
 import About from "@/app/components/About";
+import AnimatedBackground from "@/app/components/AnimatedBackground";
 import Contact from "@/app/components/Contact";
 import CursorGlow from "@/app/components/CursorGlow";
 import FloatingParticles from "@/app/components/FloatingParticles";
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-black">
       <LoadingScreen />
+      <AnimatedBackground />
       <CursorGlow />
       <FloatingParticles />
 

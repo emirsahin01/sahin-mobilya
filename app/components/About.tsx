@@ -1,44 +1,56 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  Hammer,
+  Layers3,
+  Ruler,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
+
 const features = [
   {
-    number: "01",
-    title: "Özel Ölçü Üretim",
+    icon: Ruler,
+    title: "Özel Ölçü Tasarım",
     description:
-      "Mobilyalarınızı alanınızın ölçülerine, kullanım alışkanlıklarınıza ve tarzınıza göre tasarlıyoruz.",
+      "Her mobilyayı mekânın ölçülerine, kullanım ihtiyacına ve yaşam alışkanlıklarına göre planlıyoruz.",
   },
   {
-    number: "02",
-    title: "Kaliteli Malzeme",
+    icon: Hammer,
+    title: "Usta İşçilik",
     description:
-      "Uzun ömürlü kullanım için güvenilir, dayanıklı ve estetik malzemeleri tercih ediyoruz.",
+      "Üretimin her aşamasında sağlamlık, detay kalitesi ve uzun ömürlü kullanım anlayışıyla çalışıyoruz.",
   },
   {
-    number: "03",
-    title: "Özenli İşçilik",
+    icon: Layers3,
+    title: "Doğru Malzeme",
     description:
-      "Üretimin her aşamasında detaylara önem veriyor, temiz ve kaliteli işçilik sunuyoruz.",
+      "Projeye uygun gövde, kapak, aksesuar ve donanım seçeneklerini kullanım amacına göre belirliyoruz.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Güvenilir Hizmet",
+    description:
+      "Ölçüden montaja kadar süreci düzenli, şeffaf ve titiz bir çalışma anlayışıyla yönetiyoruz.",
   },
 ];
 
-const values = [
+const highlights = [
   {
-    title: "Size Özel Tasarım",
-    description:
-      "Hazır kalıplar yerine, yaşam alanınıza ve ihtiyaçlarınıza uygun çözümler geliştiriyoruz.",
+    value: "12+",
+    label: "Yıllık deneyim",
   },
   {
-    title: "Fonksiyonel Kullanım",
-    description:
-      "Estetik görünümün yanında depolama alanı ve kullanım kolaylığını da ön planda tutuyoruz.",
+    value: "250+",
+    label: "Tamamlanan proje",
   },
   {
-    title: "Doğrudan İletişim",
-    description:
-      "Tasarım aşamasından montaja kadar tüm süreçte sizinle doğrudan iletişim kuruyoruz.",
-  },
-  {
-    title: "Titiz Teslimat",
-    description:
-      "Ürünlerinizi dikkatli şekilde üretiyor, montajını temiz ve özenli biçimde tamamlıyoruz.",
+    value: "100%",
+    label: "Müşteri odaklı hizmet",
   },
 ];
 
@@ -46,160 +58,368 @@ export default function About() {
   return (
     <section
       id="hakkimizda"
-      className="relative overflow-hidden bg-[#080808] px-6 py-28 text-white"
+      className="relative overflow-hidden bg-[#080808] py-24 text-white sm:py-28 lg:py-32"
     >
-      <div className="absolute left-[-180px] top-32 h-[420px] w-[420px] rounded-full bg-[#C9A14A]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-[-220px] top-1/4 h-[520px] w-[520px] rounded-full bg-[#C9A14A]/7 blur-[170px]" />
 
-      <div className="absolute bottom-[-180px] right-[-120px] h-[450px] w-[450px] rounded-full bg-[#C9A14A]/10 blur-[130px]" />
+      <div className="pointer-events-none absolute bottom-[-160px] right-[-180px] h-[480px] w-[480px] rounded-full bg-[#C9A14A]/6 blur-[170px]" />
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 h-32 w-32 rounded-tl-[2.5rem] border-l border-t border-[#C9A14A]/60" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+      >
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "85px 85px",
+          }}
+        />
+      </div>
 
-            <div className="absolute -bottom-5 -right-5 h-32 w-32 rounded-br-[2.5rem] border-b border-r border-[#C9A14A]/60" />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
+            transition={{
+              duration: 0.85,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative"
+          >
+            <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-[#C9A14A]/10 blur-[100px]" />
 
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-3 shadow-2xl shadow-black/40">
-              <div className="relative h-[480px] overflow-hidden rounded-[2rem] md:h-[620px]">
+            <div className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-[#101010] p-3 shadow-2xl">
+              <div className="relative h-[620px] overflow-hidden rounded-[1.75rem]">
                 <img
-                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1400&auto=format&fit=crop"
-                  alt="Şahin Mobilya özel mobilya tasarımı"
-                  className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                  src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=90"
+                  alt="Şahin Mobilya özel tasarım iç mekân uygulaması"
+                  className="h-full w-full object-cover transition duration-1000 hover:scale-105"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-black/10" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-7 md:p-10">
-                  <p className="text-sm font-medium uppercase tracking-[0.28em] text-[#C9A14A]">
-                    Şahin Mobilya & Tasarım
+                <div className="absolute left-5 right-5 top-5 flex items-center justify-between sm:left-6 sm:right-6 sm:top-6">
+                  <span className="rounded-full border border-white/15 bg-black/45 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/75 backdrop-blur-xl sm:text-xs">
+                    Şahin Mobilya
+                  </span>
+
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#C9A14A]/30 bg-[#C9A14A]/15 text-[#C9A14A] backdrop-blur-xl">
+                    <Sparkles size={19} />
+                  </span>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#C9A14A]">
+                    Tasarımdan montaja
                   </p>
 
-                  <p className="mt-3 max-w-md text-lg font-medium leading-8 text-white md:text-xl">
-                    Yaşam alanlarınıza uygun, estetik ve kullanışlı mobilyalar
-                    üretiyoruz.
+                  <h3 className="mt-3 max-w-md text-3xl font-semibold leading-tight sm:text-4xl">
+                    Her ayrıntısı size özel yaşam alanları.
+                  </h3>
+
+                  <p className="mt-4 max-w-lg text-sm leading-7 text-white/55">
+                    Estetik görünümü, işlevsel detayları ve kaliteli
+                    üretimi aynı projede bir araya getiriyoruz.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
+
+            <motion.div
+              animate={{
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -bottom-8 -right-3 rounded-2xl border border-white/15 bg-black/75 p-5 shadow-2xl backdrop-blur-2xl sm:-right-8 sm:p-6"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C9A14A] text-black">
+                  <Users size={22} />
+                </div>
+
+                <div>
+                  <p className="text-2xl font-semibold text-white">
+                    250+
+                  </p>
+
+                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/40">
+                    Tamamlanan proje
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              animate={{
+                y: [0, 9, 0],
+              }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.6,
+              }}
+              className="absolute -left-3 top-20 rounded-2xl border border-white/15 bg-black/75 p-4 shadow-2xl backdrop-blur-2xl sm:-left-8 sm:p-5"
+            >
+              <div className="flex items-center gap-3">
+                <BadgeCheck
+                  size={22}
+                  className="text-[#C9A14A]"
+                />
+
+                <div>
+                  <p className="text-sm font-semibold text-white">
+                    Kaliteli İşçilik
+                  </p>
+
+                  <p className="mt-1 text-xs text-white/40">
+                    Titiz üretim ve montaj
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
 
           <div>
-            <span className="inline-flex rounded-full border border-[#C9A14A]/40 bg-[#C9A14A]/5 px-5 py-2 text-sm font-medium text-[#C9A14A]">
-              Hakkımızda
-            </span>
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.7,
+              }}
+              transition={{
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mb-5 flex items-center gap-3"
+            >
+              <span className="h-px w-12 bg-[#C9A14A]" />
 
-            <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A14A]">
+                Hakkımızda
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{
+                opacity: 0,
+                y: 35,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.75,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl"
+            >
               Mobilyayı yalnızca üretmiyor,
               <span className="block text-[#C9A14A]">
                 yaşam alanınızı tasarlıyoruz.
               </span>
-            </h2>
+            </motion.h2>
 
-            <p className="mt-7 text-base leading-8 text-white/65 md:text-lg">
-              Şahin Mobilya olarak mutfak dolabı, gardırop, TV ünitesi, banyo
-              dolabı ve özel mobilya ihtiyaçlarınız için ölçüye özel çözümler
-              sunuyoruz.
-            </p>
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-7 text-base leading-8 text-white/55 sm:text-lg sm:leading-9"
+            >
+              Şahin Mobilya olarak her projeye aynı özenle
+              yaklaşıyoruz. Mekânınızı inceliyor, ihtiyaçlarınızı
+              dinliyor ve estetik görünümle günlük kullanım
+              kolaylığını bir araya getiren çözümler geliştiriyoruz.
+            </motion.p>
 
-            <p className="mt-5 text-base leading-8 text-white/65 md:text-lg">
-              Tasarımdan üretime, üretimden montaja kadar bütün süreci titizlikle
-              yönetiyor; modern görünümü, işlevsel kullanım ve kaliteli
-              işçilikle bir araya getiriyoruz.
-            </p>
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.28,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-5 text-base leading-8 text-white/45"
+            >
+              Mutfak, gardırop, TV ünitesi, vestiyer, banyo
+              mobilyası ve özel tasarım uygulamalarında ölçü alma,
+              tasarım, üretim ve montaj süreçlerini tek elden
+              yönetiyoruz.
+            </motion.p>
 
-            <div className="mt-10 space-y-5">
-              {features.map((feature) => (
-                <div
-                  key={feature.number}
-                  className="group flex gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:border-[#C9A14A]/40 hover:bg-[#C9A14A]/5"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#C9A14A]/30 bg-[#C9A14A]/10 text-sm font-bold text-[#C9A14A]">
-                    {feature.number}
-                  </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">
+                return (
+                  <motion.article
+                    key={feature.title}
+                    initial={{
+                      opacity: 0,
+                      y: 35,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                      amount: 0.4,
+                    }}
+                    transition={{
+                      duration: 0.65,
+                      delay: 0.1 + index * 0.08,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="group rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#C9A14A]/30 hover:bg-[#C9A14A]/[0.06]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#C9A14A]/25 bg-[#C9A14A]/10 text-[#C9A14A] transition duration-500 group-hover:border-[#C9A14A] group-hover:bg-[#C9A14A] group-hover:text-black">
+                      <Icon size={21} />
+                    </div>
+
+                    <h3 className="mt-5 text-lg font-semibold text-white">
                       {feature.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-white/55">
+                    <p className="mt-3 text-sm leading-7 text-white/45">
                       {feature.description}
                     </p>
-                  </div>
-                </div>
-              ))}
+                  </motion.article>
+                );
+              })}
             </div>
 
-            <a
-              href="#iletisim"
-              className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#C9A14A] px-8 py-4 font-semibold text-black transition duration-300 hover:bg-white"
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.25,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-9 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 sm:grid-cols-3"
             >
-              Bizimle İletişime Geç
-              <span className="text-xl">→</span>
-            </a>
-          </div>
-        </div>
+              {highlights.map((highlight) => (
+                <div
+                  key={highlight.label}
+                  className="bg-[#101010] px-5 py-6 text-center"
+                >
+                  <p className="text-3xl font-semibold text-[#C9A14A]">
+                    {highlight.value}
+                  </p>
 
-        <div className="mt-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#C9A14A]">
-              Neden Şahin Mobilya?
-            </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/35">
+                    {highlight.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
 
-            <h3 className="mt-5 text-3xl font-bold tracking-tight md:text-5xl">
-              Her ayrıntıda kalite ve güven
-            </h3>
-
-            <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/55">
-              Mobilyalarınızın yalnızca güzel görünmesini değil, günlük
-              hayatınızı kolaylaştırmasını ve uzun yıllar kullanılmasını
-              hedefliyoruz.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value, index) => (
-              <div
-                key={value.title}
-                className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-7 transition duration-500 hover:-translate-y-2 hover:border-[#C9A14A]/40"
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-9 flex flex-col gap-4 sm:flex-row"
+            >
+              <a
+                href="#iletisim"
+                className="group inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full bg-[#C9A14A] px-7 text-sm font-semibold text-black transition duration-300 hover:bg-[#dfba65]"
               >
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-[#C9A14A]/5 transition duration-500 group-hover:bg-[#C9A14A]/10" />
+                Projenizi Konuşalım
 
-                <span className="relative text-sm font-bold text-[#C9A14A]">
-                  0{index + 1}
-                </span>
+                <ArrowUpRight
+                  size={19}
+                  className="transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </a>
 
-                <h4 className="relative mt-10 text-xl font-semibold">
-                  {value.title}
-                </h4>
-
-                <p className="relative mt-4 text-sm leading-7 text-white/55">
-                  {value.description}
-                </p>
-
-                <div className="relative mt-8 h-px w-12 bg-[#C9A14A]/60 transition-all duration-500 group-hover:w-full" />
-              </div>
-            ))}
+              <a
+                href="#projeler"
+                className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-white/15 bg-white/[0.035] px-7 text-sm font-semibold text-white transition duration-300 hover:border-[#C9A14A]/50 hover:bg-[#C9A14A]/10 hover:text-[#C9A14A]"
+              >
+                Projelerimizi İnceleyin
+              </a>
+            </motion.div>
           </div>
-        </div>
-
-        <div className="mt-24 flex flex-col items-center justify-between gap-8 rounded-[2rem] border border-[#C9A14A]/25 bg-gradient-to-r from-[#C9A14A]/15 via-white/[0.03] to-[#C9A14A]/10 p-8 md:flex-row md:p-12">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#C9A14A]">
-              Projenizi birlikte planlayalım
-            </p>
-
-            <h3 className="mt-4 max-w-2xl text-3xl font-bold leading-tight md:text-4xl">
-              Evinize özel mobilya çözümleri için ilk adımı atın.
-            </h3>
-          </div>
-
-          <a
-            href="#iletisim"
-            className="shrink-0 rounded-full border border-[#C9A14A] px-8 py-4 font-semibold text-[#C9A14A] transition duration-300 hover:bg-[#C9A14A] hover:text-black"
-          >
-            Ücretsiz Teklif Al
-          </a>
         </div>
       </div>
     </section>

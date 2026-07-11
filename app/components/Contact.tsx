@@ -1,316 +1,516 @@
 "use client";
 
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Clock3,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Ruler,
+  Send,
+  Sparkles,
+} from "lucide-react";
 import { FormEvent, useState } from "react";
+
+type FormState = {
+  name: string;
+  phone: string;
+  service: string;
+  message: string;
+};
+
+const services = [
+  "Mutfak Dolabı",
+  "Gardırop",
+  "TV Ünitesi",
+  "Vestiyer",
+  "Banyo Dolabı",
+  "Özel Tasarım",
+];
 
 const contactItems = [
   {
-    title: "WhatsApp",
+    icon: Phone,
+    title: "Telefon",
     value: "+90 533 352 79 51",
-    href: "https://wa.me/905333527951",
-    icon: "WA",
+    href: "tel:+905333527951",
   },
   {
-    title: "Çalışma Alanlarımız",
-    value: "Mutfak, gardırop, TV ünitesi, banyo ve özel tasarım",
-    href: "#hizmetler",
-    icon: "01",
+    icon: Mail,
+    title: "E-posta",
+    value: "sahinemir309@gmail.com",
+    href: "mailto:sahinemir309@gmail.com",
   },
   {
-    title: "Teklif Süreci",
-    value: "Ölçü, tasarım, üretim ve montaj",
-    href: "#iletisim-formu",
-    icon: "02",
+    icon: MapPin,
+    title: "Hizmet Bölgesi",
+    value: "İstanbul ve çevresi",
+    href: "#harita",
+  },
+  {
+    icon: Clock3,
+    title: "Çalışma Saatleri",
+    value: "Pazartesi - Cumartesi / 08.00 - 19.00",
+    href: "#iletisim",
   },
 ];
 
 export default function Contact() {
-  const [isSending, setIsSending] = useState(false);
+  const [formData, setFormData] = useState<FormState>({
+    name: "",
+    phone: "",
+    service: services[0],
+    message: "",
+  });
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSending(true);
 
-    const form = new FormData(event.currentTarget);
+    const whatsappNumber = "905333527951";
 
-    const name = String(form.get("name") || "").trim();
-    const phone = String(form.get("phone") || "").trim();
-    const service = String(form.get("service") || "").trim();
-    const location = String(form.get("location") || "").trim();
-    const message = String(form.get("message") || "").trim();
-
-    const whatsappMessage = [
-      "Merhaba Şahin Mobilya, web siteniz üzerinden teklif almak istiyorum.",
+    const text = [
+      "Merhaba, Şahin Mobilya web sitesinden ulaşıyorum.",
       "",
-      `Ad Soyad: ${name}`,
-      `Telefon: ${phone}`,
-      `Hizmet: ${service}`,
-      `Konum: ${location || "Belirtilmedi"}`,
-      "",
-      "Proje Detayı:",
-      message,
+      `Ad Soyad: ${formData.name}`,
+      `Telefon: ${formData.phone}`,
+      `Hizmet: ${formData.service}`,
+      `Proje Detayı: ${formData.message}`,
     ].join("\n");
 
-    const whatsappUrl = `https://wa.me/905333527951?text=${encodeURIComponent(
-      whatsappMessage
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      text,
     )}`;
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-
-    setTimeout(() => {
-      setIsSending(false);
-    }, 800);
-  }
+  };
 
   return (
     <section
       id="iletisim"
-      className="relative overflow-hidden bg-[#080808] px-6 py-28 text-white"
+      className="relative overflow-hidden bg-[#080808] py-24 text-white sm:py-28 lg:py-32"
     >
-      <div className="absolute left-[-170px] top-20 h-[420px] w-[420px] rounded-full bg-[#C9A14A]/10 blur-[130px]" />
+      <div className="pointer-events-none absolute left-[-220px] top-1/3 h-[520px] w-[520px] rounded-full bg-[#C9A14A]/8 blur-[170px]" />
 
-      <div className="absolute bottom-[-180px] right-[-120px] h-[450px] w-[450px] rounded-full bg-[#C9A14A]/10 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-[-180px] right-[-180px] h-[500px] w-[500px] rounded-full bg-[#C9A14A]/7 blur-[170px]" />
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex rounded-full border border-[#C9A14A]/40 bg-[#C9A14A]/5 px-5 py-2 text-sm font-medium text-[#C9A14A]">
-            İletişim
-          </span>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+      >
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "85px 85px",
+          }}
+        />
+      </div>
 
-          <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            Hayalinizdeki mobilyayı
-            <span className="block text-[#C9A14A]">
-              birlikte tasarlayalım
-            </span>
-          </h2>
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="mb-14 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.7,
+              }}
+              transition={{
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mb-5 flex items-center gap-3"
+            >
+              <span className="h-px w-12 bg-[#C9A14A]" />
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/60 md:text-lg">
-            Projenizle ilgili bilgileri paylaşın. Formu doldurduğunuzda
-            WhatsApp üzerinden bize doğrudan ulaşabilirsiniz.
-          </p>
-        </div>
+              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A14A]">
+                İletişim
+              </span>
+            </motion.div>
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="flex flex-col gap-6">
-            <div className="rounded-[2rem] border border-[#C9A14A]/25 bg-gradient-to-br from-[#C9A14A]/15 via-white/[0.03] to-transparent p-8 md:p-10">
-              <p className="text-sm font-medium uppercase tracking-[0.28em] text-[#C9A14A]">
-                Şahin Mobilya & Tasarım
-              </p>
-
-              <h3 className="mt-5 text-3xl font-bold leading-tight md:text-4xl">
-                Ölçünüze, tarzınıza ve ihtiyacınıza özel çözümler
-              </h3>
-
-              <p className="mt-6 leading-8 text-white/60">
-                Mutfak dolabı, gardırop, TV ünitesi, banyo dolabı ve özel
-                mobilya ihtiyaçlarınız için tasarımdan montaja kadar tüm süreci
-                birlikte planlıyoruz.
-              </p>
-
-              <a
-                href="https://wa.me/905333527951"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#C9A14A] px-7 py-4 font-semibold text-black transition duration-300 hover:bg-white"
-              >
-                WhatsApp&apos;tan Ulaş
-                <span className="text-xl">→</span>
-              </a>
-            </div>
-
-            <div className="space-y-4">
-              {contactItems.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.href.startsWith("http") ? "noreferrer" : undefined
-                  }
-                  className="group flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:border-[#C9A14A]/40 hover:bg-[#C9A14A]/5"
-                >
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#C9A14A]/30 bg-[#C9A14A]/10 text-sm font-bold text-[#C9A14A]">
-                    {item.icon}
-                  </div>
-
-                  <div>
-                    <p className="text-sm text-white/40">{item.title}</p>
-                    <p className="mt-1 font-medium leading-6 text-white/85">
-                      {item.value}
-                    </p>
-                  </div>
-
-                  <span className="ml-auto text-xl text-[#C9A14A] transition duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </a>
-              ))}
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-              <p className="text-sm font-semibold text-[#C9A14A]">
-                Teklif öncesinde hazırlayabilecekleriniz
-              </p>
-
-              <div className="mt-5 space-y-4 text-sm leading-6 text-white/55">
-                <p>
-                  <span className="mr-3 text-[#C9A14A]">01.</span>
-                  Mobilyanın yapılacağı alanın yaklaşık ölçüleri
-                </p>
-
-                <p>
-                  <span className="mr-3 text-[#C9A14A]">02.</span>
-                  Beğendiğiniz renk, model veya örnek görseller
-                </p>
-
-                <p>
-                  <span className="mr-3 text-[#C9A14A]">03.</span>
-                  Projenin yapılacağı ilçe veya konum bilgisi
-                </p>
-              </div>
-            </div>
+            <motion.h2
+              initial={{
+                opacity: 0,
+                y: 35,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.75,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl"
+            >
+              Hayalinizdeki projeyi
+              <span className="block text-[#C9A14A]">
+                birlikte tasarlayalım.
+              </span>
+            </motion.h2>
           </div>
 
-          <div
-            id="iletisim-formu"
-            className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 shadow-2xl shadow-black/30 md:p-10"
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.5,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="max-w-xl text-base leading-8 text-white/50"
           >
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#C9A14A]">
+            Mekânınız, ölçüleriniz ve ihtiyaçlarınız hakkında kısa
+            bilgi bırakın. Projenizi değerlendirelim ve size özel
+            çözümümüzü birlikte oluşturalım.
+          </motion.p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -45,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#101010] p-7 sm:p-9"
+          >
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#C9A14A]/12 blur-[110px]" />
+
+            <div className="relative">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#C9A14A]/25 bg-[#C9A14A]/10 text-[#C9A14A]">
+                <MessageCircle size={25} />
+              </div>
+
+              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[#C9A14A]">
+                Şahin Mobilya
+              </p>
+
+              <h3 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+                Projenizi anlatın,
+                <span className="block text-white/45">
+                  çözümünü birlikte bulalım.
+                </span>
+              </h3>
+
+              <p className="mt-5 text-sm leading-7 text-white/45 sm:text-base">
+                Mutfak, gardırop, TV ünitesi, vestiyer, banyo
+                dolabı ve özel tasarım mobilya ihtiyaçlarınız için
+                bizimle iletişime geçebilirsiniz.
+              </p>
+
+              <div className="mt-9 grid gap-4">
+                {contactItems.map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <motion.a
+                      key={item.title}
+                      href={item.href}
+                      initial={{
+                        opacity: 0,
+                        y: 25,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      viewport={{
+                        once: true,
+                        amount: 0.5,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.1 + index * 0.08,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="group flex items-center gap-4 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4 transition duration-300 hover:border-[#C9A14A]/35 hover:bg-[#C9A14A]/[0.06]"
+                    >
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#C9A14A]/20 bg-[#C9A14A]/10 text-[#C9A14A] transition duration-300 group-hover:bg-[#C9A14A] group-hover:text-black">
+                        <Icon size={21} />
+                      </span>
+
+                      <span className="min-w-0">
+                        <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-white/30">
+                          {item.title}
+                        </span>
+
+                        <span className="mt-1 block break-words text-sm leading-6 text-white/70">
+                          {item.value}
+                        </span>
+                      </span>
+                    </motion.a>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/10">
+                <div className="bg-[#0b0b0b] p-5">
+                  <Ruler size={21} className="text-[#C9A14A]" />
+
+                  <p className="mt-4 text-sm font-semibold text-white">
+                    Ücretsiz keşif
+                  </p>
+
+                  <p className="mt-2 text-xs leading-5 text-white/35">
+                    Projeniz için ölçü ve ihtiyaç değerlendirmesi
+                  </p>
+                </div>
+
+                <div className="bg-[#0b0b0b] p-5">
+                  <Sparkles size={21} className="text-[#C9A14A]" />
+
+                  <p className="mt-4 text-sm font-semibold text-white">
+                    Özel tasarım
+                  </p>
+
+                  <p className="mt-2 text-xs leading-5 text-white/35">
+                    Mekânınıza ve tarzınıza uygun çözümler
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 45,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative overflow-hidden rounded-[2rem] border border-[#C9A14A]/20 bg-[#C9A14A]/[0.055] p-7 sm:p-9 lg:p-11"
+          >
+            <div className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[#C9A14A]/15 blur-[120px]" />
+
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#C9A14A]">
                 Ücretsiz Teklif Formu
               </p>
 
-              <h3 className="mt-4 text-3xl font-bold md:text-4xl">
-                Projenizi bize anlatın
+              <h3 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+                Projenizin ilk adımını
+                <span className="block text-white/45">
+                  bugün birlikte atalım.
+                </span>
               </h3>
 
-              <p className="mt-4 leading-7 text-white/50">
-                Bilgilerinizi doldurduktan sonra mesajınız WhatsApp&apos;ta
-                hazır olarak açılacaktır.
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/45 sm:text-base">
+                Formu doldurduğunuzda bilgileriniz WhatsApp
+                üzerinden hazır mesaj olarak iletilecektir.
               </p>
-            </div>
 
-            <form onSubmit={handleSubmit} className="mt-10 space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="mb-3 block text-sm font-medium text-white/70"
-                  >
-                    Ad Soyad
+              <form
+                onSubmit={handleSubmit}
+                className="mt-9 grid gap-5"
+              >
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="grid gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+                      Ad Soyad
+                    </span>
+
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(event) =>
+                        setFormData((current) => ({
+                          ...current,
+                          name: event.target.value,
+                        }))
+                      }
+                      placeholder="Adınızı ve soyadınızı yazın"
+                      className="min-h-[56px] rounded-2xl border border-white/10 bg-black/35 px-5 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/60 focus:bg-black/55"
+                    />
                   </label>
 
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Adınızı ve soyadınızı yazın"
-                    className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/70 focus:bg-black/50"
-                  />
-                </div>
+                  <label className="grid gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+                      Telefon
+                    </span>
 
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="mb-3 block text-sm font-medium text-white/70"
-                  >
-                    Telefon
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(event) =>
+                        setFormData((current) => ({
+                          ...current,
+                          phone: event.target.value,
+                        }))
+                      }
+                      placeholder="05xx xxx xx xx"
+                      className="min-h-[56px] rounded-2xl border border-white/10 bg-black/35 px-5 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/60 focus:bg-black/55"
+                    />
                   </label>
-
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    placeholder="05XX XXX XX XX"
-                    className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/70 focus:bg-black/50"
-                  />
                 </div>
-              </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="service"
-                    className="mb-3 block text-sm font-medium text-white/70"
-                  >
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
                     İlgilendiğiniz Hizmet
-                  </label>
+                  </span>
 
                   <select
-                    id="service"
-                    name="service"
-                    required
-                    defaultValue=""
-                    className="w-full rounded-2xl border border-white/10 bg-[#111111] px-5 py-4 text-white outline-none transition focus:border-[#C9A14A]/70"
+                    value={formData.service}
+                    onChange={(event) =>
+                      setFormData((current) => ({
+                        ...current,
+                        service: event.target.value,
+                      }))
+                    }
+                    className="min-h-[56px] rounded-2xl border border-white/10 bg-[#101010] px-5 text-sm text-white outline-none transition focus:border-[#C9A14A]/60"
                   >
-                    <option value="" disabled>
-                      Hizmet seçin
-                    </option>
-                    <option value="Mutfak Dolabı">Mutfak Dolabı</option>
-                    <option value="Gardırop">Gardırop</option>
-                    <option value="TV Ünitesi">TV Ünitesi</option>
-                    <option value="Banyo Dolabı">Banyo Dolabı</option>
-                    <option value="Vestiyer">Vestiyer</option>
-                    <option value="Özel Tasarım Mobilya">
-                      Özel Tasarım Mobilya
-                    </option>
-                    <option value="Diğer">Diğer</option>
+                    {services.map((service) => (
+                      <option
+                        key={service}
+                        value={service}
+                        className="bg-[#101010] text-white"
+                      >
+                        {service}
+                      </option>
+                    ))}
                   </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="location"
-                    className="mb-3 block text-sm font-medium text-white/70"
-                  >
-                    İlçe / Konum
-                  </label>
-
-                  <input
-                    id="location"
-                    name="location"
-                    type="text"
-                    placeholder="Projenin yapılacağı konum"
-                    className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/70 focus:bg-black/50"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="mb-3 block text-sm font-medium text-white/70"
-                >
-                  Proje Detayı
                 </label>
 
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={7}
-                  placeholder="Yaptırmak istediğiniz mobilyayı, ölçüleri ve taleplerinizi kısaca anlatın..."
-                  className="w-full resize-none rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/70 focus:bg-black/50"
-                />
-              </div>
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+                    Proje Detayı
+                  </span>
 
-              <button
-                type="submit"
-                disabled={isSending}
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#C9A14A] px-8 py-4 font-semibold text-black transition duration-300 hover:bg-white disabled:cursor-wait disabled:opacity-70"
-              >
-                {isSending ? "WhatsApp Açılıyor..." : "WhatsApp ile Teklif Al"}
-                {!isSending && <span className="text-xl">→</span>}
-              </button>
+                  <textarea
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={(event) =>
+                      setFormData((current) => ({
+                        ...current,
+                        message: event.target.value,
+                      }))
+                    }
+                    placeholder="Mekânınız, ölçüleriniz ve istediğiniz tasarım hakkında kısa bilgi yazın"
+                    className="resize-none rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-sm leading-7 text-white outline-none transition placeholder:text-white/25 focus:border-[#C9A14A]/60 focus:bg-black/55"
+                  />
+                </label>
 
-              <p className="text-center text-xs leading-5 text-white/35">
-                Form gönderildiğinde WhatsApp açılır. Mesajı kontrol ederek
-                kendiniz gönderebilirsiniz.
-              </p>
-            </form>
-          </div>
+                <button
+                  type="submit"
+                  className="group mt-2 inline-flex min-h-[58px] items-center justify-center gap-3 rounded-full bg-[#C9A14A] px-7 text-sm font-semibold text-black transition duration-300 hover:bg-[#dfba65]"
+                >
+                  WhatsApp ile Teklif İste
+
+                  <Send
+                    size={19}
+                    className="transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+                </button>
+
+                <p className="text-center text-xs leading-6 text-white/30">
+                  Formu gönderdiğinizde WhatsApp uygulaması yeni
+                  sekmede açılır.
+                </p>
+              </form>
+            </div>
+          </motion.div>
         </div>
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 35,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.5,
+          }}
+          transition={{
+            duration: 0.75,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="relative mt-14 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] px-6 py-9 sm:px-9 lg:flex lg:items-center lg:justify-between lg:px-11"
+        >
+          <div className="pointer-events-none absolute right-[-80px] top-[-100px] h-[300px] w-[300px] rounded-full bg-[#C9A14A]/10 blur-[100px]" />
+
+          <div className="relative max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#C9A14A]">
+              Hızlı İletişim
+            </p>
+
+            <h3 className="mt-3 text-2xl font-semibold leading-tight sm:text-3xl">
+              Projenizi doğrudan WhatsApp üzerinden anlatın.
+            </h3>
+
+            <p className="mt-3 text-sm leading-7 text-white/45 sm:text-base">
+              Mekânınızın fotoğraflarını ve yaklaşık ölçülerini
+              göndererek hızlıca bilgi alabilirsiniz.
+            </p>
+          </div>
+
+          <a
+            href="https://wa.me/905333527951"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative mt-7 inline-flex min-h-[56px] shrink-0 items-center justify-center gap-3 rounded-full border border-[#C9A14A]/30 bg-[#C9A14A]/10 px-7 text-sm font-semibold text-[#C9A14A] transition duration-300 hover:border-[#C9A14A] hover:bg-[#C9A14A] hover:text-black lg:ml-10 lg:mt-0"
+          >
+            WhatsApp’tan Yazın
+
+            <ArrowUpRight
+              size={19}
+              className="transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
