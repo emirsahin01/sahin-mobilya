@@ -1,6 +1,7 @@
 import About from "@/app/components/About";
 import Contact from "@/app/components/Contact";
 import CursorGlow from "@/app/components/CursorGlow";
+import FloatingParticles from "@/app/components/FloatingParticles";
 import Footer from "@/app/components/Footer";
 import Hero from "@/app/components/Hero";
 import LoadingScreen from "@/app/components/LoadingScreen";
@@ -15,41 +16,44 @@ import WhatsappButton from "@/app/components/WhatsappButton";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black">
+    <main className="relative min-h-screen overflow-x-hidden bg-black">
       <LoadingScreen />
       <CursorGlow />
+      <FloatingParticles />
 
-      <Navbar />
-      <Hero />
-      <Stats />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Stats />
 
-      <RevealSection>
-        <Services />
-      </RevealSection>
+        <RevealSection>
+          <Services />
+        </RevealSection>
 
-      <RevealSection delay={0.05}>
-        <Projects />
-      </RevealSection>
+        <RevealSection delay={0.05}>
+          <Projects />
+        </RevealSection>
 
-      <RevealSection delay={0.05}>
-        <About />
-      </RevealSection>
+        <RevealSection delay={0.05}>
+          <About />
+        </RevealSection>
 
-      <RevealSection delay={0.05}>
-        <Testimonials />
-      </RevealSection>
+        <RevealSection delay={0.05}>
+          <Testimonials />
+        </RevealSection>
 
-      <RevealSection delay={0.05}>
-        <Contact />
-      </RevealSection>
+        <RevealSection delay={0.05}>
+          <Contact />
+        </RevealSection>
 
-      <RevealSection delay={0.05}>
-        <MapSection />
-      </RevealSection>
+        <RevealSection delay={0.05}>
+          <MapSection />
+        </RevealSection>
 
-      <RevealSection>
-        <Footer />
-      </RevealSection>
+        <RevealSection>
+          <Footer />
+        </RevealSection>
+      </div>
 
       <WhatsappButton />
     </main>
