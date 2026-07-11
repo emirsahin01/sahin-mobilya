@@ -17,45 +17,48 @@ import WhatsappButton from "@/app/components/WhatsappButton";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-black">
+    <main className="relative min-h-screen overflow-x-hidden bg-black text-white">
       <LoadingScreen />
+
       <AnimatedBackground />
-      <CursorGlow />
       <FloatingParticles />
+      <CursorGlow />
 
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
+      <Navbar />
+
+      <Hero />
+
+      <RevealSection>
         <Stats />
+      </RevealSection>
 
-        <RevealSection>
-          <Services />
-        </RevealSection>
+      <RevealSection delay={0.05}>
+        <Services />
+      </RevealSection>
 
-        <RevealSection delay={0.05}>
-          <Projects />
-        </RevealSection>
+      <RevealSection delay={0.1}>
+        <Projects />
+      </RevealSection>
 
-        <RevealSection delay={0.05}>
-          <About />
-        </RevealSection>
+      <RevealSection delay={0.15}>
+        <About />
+      </RevealSection>
 
-        <RevealSection delay={0.05}>
-          <Testimonials />
-        </RevealSection>
+      <RevealSection delay={0.2}>
+        <Testimonials />
+      </RevealSection>
 
-        <RevealSection delay={0.05}>
-          <Contact />
-        </RevealSection>
+      <RevealSection delay={0.25}>
+        <Contact />
+      </RevealSection>
 
-        <RevealSection delay={0.05}>
-          <MapSection />
-        </RevealSection>
+      <RevealSection delay={0.3}>
+        <MapSection />
+      </RevealSection>
 
-        <RevealSection>
-          <Footer />
-        </RevealSection>
-      </div>
+      <RevealSection delay={0.35}>
+        <Footer />
+      </RevealSection>
 
       <WhatsappButton />
     </main>
