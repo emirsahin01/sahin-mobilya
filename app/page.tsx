@@ -1,5 +1,6 @@
 import About from "@/app/components/About";
 import Contact from "@/app/components/Contact";
+import CursorGlow from "@/app/components/CursorGlow";
 import Footer from "@/app/components/Footer";
 import Hero from "@/app/components/Hero";
 import LoadingScreen from "@/app/components/LoadingScreen";
@@ -16,11 +17,10 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-black">
       <LoadingScreen />
+      <CursorGlow />
 
       <Navbar />
-
       <Hero />
-
       <Stats />
 
       <RevealSection>
